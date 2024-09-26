@@ -1,4 +1,5 @@
 <?php
+
 require_once 'memberonlyevent.civix.php';
 
 /**
@@ -6,8 +7,7 @@ require_once 'memberonlyevent.civix.php';
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_config
  */
-function memberonlyevent_civicrm_config(&$config)
-{
+function memberonlyevent_civicrm_config(&$config) {
   _memberonlyevent_civix_civicrm_config($config);
 }
 
@@ -18,8 +18,7 @@ function memberonlyevent_civicrm_config(&$config)
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_xmlMenu
  */
-function memberonlyevent_civicrm_xmlMenu(&$files)
-{
+function memberonlyevent_civicrm_xmlMenu(&$files) {
   _memberonlyevent_civix_civicrm_xmlMenu($files);
 }
 
@@ -28,8 +27,7 @@ function memberonlyevent_civicrm_xmlMenu(&$files)
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_install
  */
-function memberonlyevent_civicrm_install()
-{
+function memberonlyevent_civicrm_install() {
   _memberonlyevent_civix_civicrm_install();
   /* create custom group and custom field for member only event */
   $params_group = array(
@@ -44,9 +42,9 @@ function memberonlyevent_civicrm_install()
     'is_active' => 1,
     'is_public' => 0
   );
-  
+
   $group_id = custom_group_get_id('member_only_event');
-  if (! $group_id) {
+  if (!$group_id) {
     $customGroup = civicrm_api3('CustomGroup', 'create', $params_group);
   }
   if (isset($customGroup)) {
@@ -73,9 +71,9 @@ function memberonlyevent_civicrm_install()
         1
       )
     );
-    
+
     $field_id = custom_field_get_id($customGroup['id'], 'is_member_only_event');
-    if (! $field_id) {
+    if (!$field_id) {
       $customField = civicrm_api3('CustomField', 'create', $params_field);
     }
   }
@@ -86,8 +84,7 @@ function memberonlyevent_civicrm_install()
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_uninstall
  */
-function memberonlyevent_civicrm_uninstall()
-{
+function memberonlyevent_civicrm_uninstall() {
   _memberonlyevent_civix_civicrm_uninstall();
   $group_id = custom_group_get_id('member_only_event');
   $field_id = custom_field_get_id($group_id, 'is_member_only_event');
@@ -97,7 +94,7 @@ function memberonlyevent_civicrm_uninstall()
   if ($field_id) {
     civicrm_api3('CustomField', 'delete', $params_field);
   }
-  
+
   $params_group = array(
     'id' => $group_id
   );
@@ -111,8 +108,7 @@ function memberonlyevent_civicrm_uninstall()
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_enable
  */
-function memberonlyevent_civicrm_enable()
-{
+function memberonlyevent_civicrm_enable() {
   _memberonlyevent_civix_civicrm_enable();
 }
 
@@ -121,8 +117,7 @@ function memberonlyevent_civicrm_enable()
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_disable
  */
-function memberonlyevent_civicrm_disable()
-{
+function memberonlyevent_civicrm_disable() {
   _memberonlyevent_civix_civicrm_disable();
 }
 
@@ -139,8 +134,7 @@ function memberonlyevent_civicrm_disable()
  *        
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_upgrade
  */
-function memberonlyevent_civicrm_upgrade($op, CRM_Queue_Queue $queue = NULL)
-{
+function memberonlyevent_civicrm_upgrade($op, CRM_Queue_Queue $queue = NULL) {
   return _memberonlyevent_civix_civicrm_upgrade($op, $queue);
 }
 
@@ -152,8 +146,7 @@ function memberonlyevent_civicrm_upgrade($op, CRM_Queue_Queue $queue = NULL)
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_managed
  */
-function memberonlyevent_civicrm_managed(&$entities)
-{
+function memberonlyevent_civicrm_managed(&$entities) {
   _memberonlyevent_civix_civicrm_managed($entities);
 }
 
@@ -166,8 +159,7 @@ function memberonlyevent_civicrm_managed(&$entities)
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_caseTypes
  */
-function memberonlyevent_civicrm_caseTypes(&$caseTypes)
-{
+function memberonlyevent_civicrm_caseTypes(&$caseTypes) {
   _memberonlyevent_civix_civicrm_caseTypes($caseTypes);
 }
 
@@ -181,8 +173,7 @@ function memberonlyevent_civicrm_caseTypes(&$caseTypes)
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_caseTypes
  */
-function memberonlyevent_civicrm_angularModules(&$angularModules)
-{
+function memberonlyevent_civicrm_angularModules(&$angularModules) {
   _memberonlyevent_civix_civicrm_angularModules($angularModules);
 }
 
@@ -191,16 +182,14 @@ function memberonlyevent_civicrm_angularModules(&$angularModules)
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_alterSettingsFolders
  */
-function memberonlyevent_civicrm_alterSettingsFolders(&$metaDataFolders = NULL)
-{
+function memberonlyevent_civicrm_alterSettingsFolders(&$metaDataFolders = NULL) {
   _memberonlyevent_civix_civicrm_alterSettingsFolders($metaDataFolders);
 }
 
 /**
  * check whether member only event or not
  */
-function memberonlyevent_civicrm_buildForm($formName, &$form)
-{
+function memberonlyevent_civicrm_buildForm($formName, &$form) {
   if ($formName == 'CRM_Event_Form_Registration_Register') {
     $settingsStr = CRM_Core_BAO_Setting::getItem('Member Only Event Settings', 'custom_memberonlyevent_settings');
     $settingsArray = unserialize($settingsStr);
@@ -219,23 +208,22 @@ function memberonlyevent_civicrm_buildForm($formName, &$form)
 /**
  * Implementation of pageRun hooks
  */
-function memberonlyevent_civicrm_pageRun(&$page)
-{
+function memberonlyevent_civicrm_pageRun(&$page) {
   if ($page->getVar('_name') == 'CRM_Event_Page_EventInfo') {
     $settingsStr = CRM_Core_BAO_Setting::getItem('Member Only Event Settings', 'custom_memberonlyevent_settings');
     $settingsArray = unserialize($settingsStr);
-    
+
     $event_id = $page->getVar('_id');
     if (check_membership_for_event_register($event_id)) {
       $page->assign('mark_inactive', 1);
     }
-    
+
     if ($settingsArray['display_memberonly_message']) {
       $page->assign('memberonly_message', $settingsArray['memberonly_message']);
     } else {
       $page->assign('memberonly_message', '');
     }
-    
+
     $templatePath = realpath(dirname(__FILE__) . "/templates");
     CRM_Core_Region::instance('page-footer')->add(array(
       'template' => "{$templatePath}/CRM/Event/Page/EventInfoCustom.tpl"
@@ -246,8 +234,7 @@ function memberonlyevent_civicrm_pageRun(&$page)
 /**
  * check membership for event register
  */
-function check_membership_for_event_register($event_id)
-{
+function check_membership_for_event_register($event_id) {
   $group_id = custom_group_get_id('member_only_event');
   if ($group_id) {
     $field_id = custom_field_get_id($group_id, 'is_member_only_event');
@@ -263,10 +250,10 @@ function check_membership_for_event_register($event_id)
           $member_only = $result['values'][0]['custom_' . $field_id][0];
           $session = CRM_Core_Session::singleton();
           $contact_id = $session->get('userID');
-          
+
           $settingsStr = CRM_Core_BAO_Setting::getItem('Member Only Event Settings', 'custom_memberonlyevent_settings');
           $settingsArray = unserialize($settingsStr);
-          if (! empty($settingsArray['memberonly_statuses'])) {
+          if (!empty($settingsArray['memberonly_statuses'])) {
             $result_membership = civicrm_api3('Membership', 'get', array(
               'sequential' => 1,
               'contact_id' => $contact_id,
@@ -293,21 +280,20 @@ function check_membership_for_event_register($event_id)
  *          custom field group name to look for, corresponds to field civicrm_custom_group.name
  * @return integer custom field group id if it exists, else zero
  */
-function custom_group_get_id($group_name)
-{
+function custom_group_get_id($group_name) {
   $result = 0;
-  
+
   // This is an empty array we pass in to make the retrieve() function happy
   $def = array();
   $params = array(
     'name' => $group_name
   );
-  
+
   require_once ('CRM/Core/BAO/CustomGroup.php');
-  
+
   $custom_group = CRM_Core_BAO_CustomGroup::retrieve($params, $def);
-  
-  if (! empty($custom_group)) {
+
+  if (!empty($custom_group)) {
     $result = $custom_group->id;
   }
   return $result;
@@ -322,22 +308,21 @@ function custom_group_get_id($group_name)
  *          custom field name to look for, corresponds to field civicrm_custom_field.label
  * @return integer custom field id if it exists, else zero
  */
-function custom_field_get_id($custom_group_id, $field_name)
-{
+function custom_field_get_id($custom_group_id, $field_name) {
   $result = 0;
-  
+
   // This is an empty array we pass in to make the retrieve() function happy
   $def = array();
   $params = array(
     'custom_group_id' => $custom_group_id,
     'name' => $field_name
   );
-  
+
   require_once ('CRM/Core/BAO/CustomField.php');
-  
+
   $custom_field = CRM_Core_BAO_CustomField::retrieve($params, $def);
-  
-  if (! empty($custom_field)) {
+
+  if (!empty($custom_field)) {
     $result = $custom_field->id;
   }
   return $result;
@@ -348,12 +333,17 @@ function custom_field_get_id($custom_group_id, $field_name)
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_navigationMenu
  */
-function memberonlyevent_civicrm_navigationMenu(&$params)
-{
+function memberonlyevent_civicrm_navigationMenu(&$params) {
   // get the ids of Administer Menu & CiviEvent Menu
-  $administerMenuId = CRM_Core_DAO::getFieldValue('CRM_Core_BAO_Navigation', 'Administer', 'id', 'name');
-  $eventMenuId = CRM_Core_DAO::getFieldValue('CRM_Core_BAO_Navigation', 'CiviEvent', 'id', 'name');
-  
+  $defaults = [];
+  $admItem = CRM_Core_BAO_Navigation::retrieve([
+      'name' => 'Administer'
+      ], $defaults);
+  $administerMenuId = (int) $admItem->id;
+  $evItem = CRM_Core_BAO_Navigation::retrieve([
+      'name' => 'CiviEvent'
+      ], $defaults);
+  $eventMenuId = (int) $evItem->id;
   // skip adding menu if there is no administer menu
   if ($administerMenuId && $eventMenuId) {
     // get the maximum key under CiviEvent menu
